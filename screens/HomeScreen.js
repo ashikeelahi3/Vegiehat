@@ -9,6 +9,10 @@ export default function HomeScreen({ navigation, items }) {
         title="Submit Item Price"
         onPress={() => navigation.navigate('Submit Price')}
       />
+      <Button
+        title="View Visualization"
+        onPress={() => navigation.navigate('Visualization')}
+      />
 
       <Text style={styles.submittedTitle}>Submitted Items:</Text>
       {items.length > 0 ? (

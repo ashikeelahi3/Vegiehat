@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 
 export default function SubmitPriceScreen({ items, setItems }) {
   const [itemName, setItemName] = useState('');
@@ -7,9 +7,19 @@ export default function SubmitPriceScreen({ items, setItems }) {
   const [category, setCategory] = useState('');
 
   const handleSubmit = () => {
+    if (!itemName || !price || !category) {
+      Alert.alert('Error', 'All fields are required!');
+      return;
+    }
+
+    if (isNaN(price) || parseFloat(price) <= 0) {
+      Alert.alert('Error', 'Price must be a valid positive number!');
+      return;
+    }
+
     const newItem = { itemName, price, category };
     setItems([...items, newItem]); // Add new item to the existing list
-    alert('Price submitted successfully!');
+    Alert.alert('Success', 'Price submitted successfully!');
     setItemName('');
     setPrice('');
     setCategory('');
