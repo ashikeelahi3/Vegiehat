@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { ItemsContext } from '../context/ItemsContext'; // Import the context
 import { colors, spacing } from '../constants/theme';
 
-export default function SubmitPriceScreen({ items, setItems }) {
+export default function SubmitPriceScreen() {
+  const { items, setItems } = useContext(ItemsContext); // Access the context
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
 
   const handleSubmit = () => {
     if (!itemName || !price || !category) {
-      Alert.alert('Error', 'All fields are required!');
+      alert('Error, All fields are required!');
       return;
     }
 
     if (isNaN(price) || parseFloat(price) <= 0) {
-      Alert.alert('Error', 'Price must be a valid positive number!');
+      alert('Error, Price must be a valid positive number!');
       return;
     }
 
-    const newItem = { itemName, price, category };
-    setItems([...items, newItem]);
-    Alert.alert('Success', 'Price submitted successfully!');
+    const newItem = { itemName, price: parseFloat(price), category };
+    setItems([...items, newItem]); // Update the global state
+    alert('Success, Price submitted successfully!');
     setItemName('');
     setPrice('');
     setCategory('');
@@ -28,7 +30,7 @@ export default function SubmitPriceScreen({ items, setItems }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Submit Item Price</Text>
+      <Text style={styles.title}>Submit Item Price Okay?</Text>
       <TextInput
         style={styles.input}
         placeholder="Item Name"

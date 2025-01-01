@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import { ItemsContext } from '../context/ItemsContext';
 import { colors, spacing } from '../constants/theme';
 
-export default function HomeScreen({ navigation, items }) {
-  return (
+export default function HomeScreen({ navigation}) {
+    const { items } = useContext(ItemsContext);
+    return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome to Vegiehat! 🚀</Text>
       <View style={styles.buttonContainer}>
@@ -16,13 +18,13 @@ export default function HomeScreen({ navigation, items }) {
       <View style={styles.buttonContainer}>
         <Button
           title="View Visualization"
-          onPress={() => navigation.navigate('Visualization')}
+          onPress={() => navigation.navigate('Visualization', {items})}
           color={colors.secondary}
         />
       </View>
 
       <Text style={styles.submittedTitle}>Submitted Items:</Text>
-      {items.length > 0 ? (
+      {items && items.length > 0  ? (
         <FlatList
           data={items}
           keyExtractor={(item, index) => index.toString()}

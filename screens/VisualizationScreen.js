@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
+import { ItemsContext } from '../context/ItemsContext'; // Import the context
 import { colors, spacing } from '../constants/theme';
 
-export default function VisualizationScreen({ items }) {
+export default function VisualizationScreen() {
+  const { items } = useContext(ItemsContext); // Access the context
+
   // Define chart dimensions for a professional, centered layout
   const chartWidth = Math.min(Dimensions.get('window').width * 0.9, 350);
 
