@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { colors, spacing } from '../constants/theme';
 
 export default function SubmitPriceScreen({ items, setItems }) {
   const [itemName, setItemName] = useState('');
@@ -18,7 +19,7 @@ export default function SubmitPriceScreen({ items, setItems }) {
     }
 
     const newItem = { itemName, price, category };
-    setItems([...items, newItem]); // Add new item to the existing list
+    setItems([...items, newItem]);
     Alert.alert('Success', 'Price submitted successfully!');
     setItemName('');
     setPrice('');
@@ -33,6 +34,7 @@ export default function SubmitPriceScreen({ items, setItems }) {
         placeholder="Item Name"
         value={itemName}
         onChangeText={setItemName}
+        placeholderTextColor={colors.lightText}
       />
       <TextInput
         style={styles.input}
@@ -40,14 +42,18 @@ export default function SubmitPriceScreen({ items, setItems }) {
         value={price}
         onChangeText={setPrice}
         keyboardType="numeric"
+        placeholderTextColor={colors.lightText}
       />
       <TextInput
         style={styles.input}
         placeholder="Category"
         value={category}
         onChangeText={setCategory}
+        placeholderTextColor={colors.lightText}
       />
-      <Button title="Submit" onPress={handleSubmit} />
+      <View style={styles.buttonContainer}>
+        <Button title="Submit" onPress={handleSubmit} color={colors.primary} />
+      </View>
     </View>
   );
 }
@@ -56,20 +62,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 20,
+    padding: spacing.large,
+    backgroundColor: colors.background,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    color: colors.text,
+    marginBottom: spacing.large,
     textAlign: 'center',
   },
   input: {
     height: 50,
-    borderColor: '#ccc',
+    borderColor: colors.lightText,
     borderWidth: 1,
     borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    paddingHorizontal: spacing.medium,
+    marginBottom: spacing.medium,
+    color: colors.text,
+  },
+  buttonContainer: {
+    marginTop: spacing.medium,
   },
 });
