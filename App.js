@@ -5,7 +5,6 @@ import { ItemsProvider } from './context/ItemsContext'; // Import the provider
 import HomeScreen from './screens/HomeScreen';
 import SubmitPriceScreen from './screens/SubmitPriceScreen';
 import VisualizationScreen from './screens/VisualizationScreen';
-import TestScreen from './screens/TestScreen';
 
 const Stack = createStackNavigator();
 
