@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { ItemsContext } from '../context/ItemsContext'; // Import the context
 import { colors, spacing } from '../constants/theme';
+import alert from '../alert';
 
 export default function SubmitPriceScreen() {
   const { items, setItems } = useContext(ItemsContext); // Access the context
@@ -11,16 +12,16 @@ export default function SubmitPriceScreen() {
 
   const handleSubmit = () => {
     if (!itemName || !price || !category) {
-      alert('Error, All fields are required!');
+      alert('Error', 'All fields are required!');
       return;
     }
 
     if (isNaN(price) || parseFloat(price) <= 0) {
-      alert('Error, Price must be a valid positive number!');
+      alert('Error', 'Price must be a valid positive number!');
       return;
     }
 
-    const newItem = { itemName, price: parseFloat(price), category };
+    const newItem = { id: Date.now().toString(), itemName, price: parseFloat(price), category };
     setItems([...items, newItem]); // Update the global state
     alert('Success, Price submitted successfully!');
     setItemName('');
