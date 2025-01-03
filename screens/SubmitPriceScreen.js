@@ -23,7 +23,7 @@ export default function SubmitPriceScreen() {
 
     const newItem = { id: Date.now().toString(), itemName, price: parseFloat(price), category };
     setItems([...items, newItem]); // Update the global state
-    alert('Success, Price submitted successfully!');
+    alert('Success', 'Price submitted successfully!');
     setItemName('');
     setPrice('');
     setCategory('');
