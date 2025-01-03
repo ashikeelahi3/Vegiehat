@@ -31,7 +31,7 @@ export default function SubmitPriceScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Submit Item Price Okay?</Text>
+      <Text style={styles.title}>Submit Item Price</Text>
       <TextInput
         style={styles.input}
         placeholder="Item Name"

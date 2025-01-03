@@ -7,7 +7,7 @@ export default function HomeScreen({ navigation}) {
     const { items } = useContext(ItemsContext);
     return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome to Vegiehat! 🚀</Text>
+      <Text style={styles.text}>Welcome to VegieHat! 🚀</Text>
       <View style={styles.buttonContainer}>
         <Button
           title="Submit Item Price"
@@ -27,7 +27,7 @@ export default function HomeScreen({ navigation}) {
       {items && items.length > 0  ? (
         <FlatList
           data={items}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item) => item.id.toString()}  // Assuming each item has a unique 'id'
           renderItem={({ item }) => (
             <View style={styles.item}>
               <Text style={styles.itemText}>
